@@ -74,6 +74,7 @@ export default function PageSectionTabs() {
                     />
                 </Tabs>
             </Box>
+
             <TimeSectionsTabs />
 
             <TabPanel value={value} index={0}>
