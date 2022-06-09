@@ -4,8 +4,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Button, InputAdornment, OutlinedInput, Stack, Typography } from '@mui/material';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { Button, Checkbox, Chip, ListItemText, OutlinedInput, Stack, Typography } from '@mui/material';
+import { Theme, useTheme } from '@mui/material/styles';
+import TextInput from '../FormElements/TextInput';
+import DatePicker from '../FormElements/DatePicker';
 
 interface State {
     amount: string;
@@ -32,11 +34,55 @@ export default function Filters() {
         setAge(event.target.value as string);
     };
 
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 250,
+            },
+        },
+    };
+
+    const names = [
+        '5 Meses',
+        '6 Meses',
+        '7 Meses',
+        '8 Meses',
+        '9 Meses',
+        '10 Meses',
+        '11 Meses',
+        '12 Meses',
+        '13 Meses',
+    ];
+
+    function getStyles(name: string, personName: readonly string[], theme: Theme) {
+        return {
+            fontWeight:
+                personName.indexOf(name) === -1
+                    ? theme.typography.fontWeightRegular
+                    : theme.typography.fontWeightMedium,
+        };
+    }
+
     const handleTextFieldChange =
         (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
             setValues({ ...values, [prop]: event.target.value });
         };
 
+    const theme = useTheme();
+    const [personName, setPersonName] = React.useState<string[]>([]);
+
+    const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+        const {
+            target: { value },
+        } = event;
+        setPersonName(
+            // On autofill we get a stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
 
     return (
         <Box width="440px">
@@ -51,23 +97,38 @@ export default function Filters() {
                         Idade
                     </Typography>
 
-                    <FormControl >
-                        <InputLabel id="demo-simple-select-label">Idade em meses</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={age}
-                            label="Idade em meses"
-                            onChange={handleSelectChange}
-                            sx={{
-                                width: "322px",
-                            }}
-                        >
-                            <MenuItem value={10}>10</MenuItem>
-                            <MenuItem value={20}>20</MenuItem>
-                            <MenuItem value={30}>30</MenuItem>
-                        </Select>
-                    </FormControl>
+                    <div>
+                        <FormControl sx={{ width: 336 }}>
+                            <InputLabel id="demo-multiple-chip-label">Idade em Meses</InputLabel>
+                            <Select
+                                labelId="demo-multiple-chip-label"
+                                id="demo-multiple-chip"
+                                multiple
+                                value={personName}
+                                onChange={handleChange}
+                                input={<OutlinedInput id="select-multiple-chip" label="Idade em Meses" />}
+                                renderValue={(selected) => (
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                        {selected.map((value) => (
+                                            <Chip key={value} label={value} sx={{ bgcolor: "ilpfBrown.clear" }} />
+                                        ))}
+                                    </Box>
+                                )}
+                                MenuProps={MenuProps}
+                            >
+                                {names.map((name) => (
+                                    <MenuItem
+                                        key={name}
+                                        value={name}
+                                        style={getStyles(name, personName, theme)}
+                                    >
+                                        <Checkbox checked={personName.indexOf(name) > -1} />
+                                        <ListItemText primary={name} />
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </div>
                 </Box>
                 <Box
                     display="flex" flexDirection="row" alignItems="center" justifyContent="space-between"
@@ -77,72 +138,30 @@ export default function Filters() {
                     >
                         Peso vivo
                     </Typography>
-                    <Box>
-
-                        <FormControl sx={{ marginRight: "16px", width: '153px' }} variant="outlined">
-                            <OutlinedInput
-                                id="outlined-adornment-maxWeight"
-                                value={values.maxWeight}
-                                onChange={handleTextFieldChange('maxWeight')}
-                                endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-                                placeholder="A partir de"
-                                inputProps={{
-                                    'aria-label': 'maxWeight',
-                                }}
-                            />
-                        </FormControl>
-
-                        <FormControl sx={{ width: '153px' }} variant="outlined">
-                            <OutlinedInput
-                                id="outlined-adornment-minWeight"
-                                value={values.minWeight}
-                                onChange={handleTextFieldChange('minWeight')}
-                                endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-                                placeholder="Até"
-                                inputProps={{
-                                    'aria-label': 'minWeight',
-                                }}
-                            />
-                        </FormControl>
-                    </Box>
+                    <Stack
+                        direction="row"
+                        spacing="16px"
+                    >
+                        <TextInput id="peso-vivo-de" />
+                        <TextInput id="peso-vivo-ate" />
+                    </Stack>
                 </Box>
 
                 <Box
                     display="flex" flexDirection="row" alignItems="center" justifyContent="space-between"
                 >
                     <Typography
-                        fontSize="0.875rem" fontWeight="500" lineHeight="16.41px" color="#242323"
+                        fontSize="0.875rem" fontWeight="500" lineHeight="16.41px"
                     >
                         Ganho de peso
                     </Typography>
-                    <Box>
-
-                        <FormControl sx={{ marginRight: "16px", width: '153px' }} variant="outlined">
-                            <OutlinedInput
-                                id="outlined-adornment-maxWeight"
-                                value={values.maxWeight}
-                                onChange={handleTextFieldChange('maxWeight')}
-                                endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-                                placeholder="A partir de"
-                                inputProps={{
-                                    'aria-label': 'maxWeight',
-                                }}
-                            />
-                        </FormControl>
-
-                        <FormControl sx={{ width: '153px' }} variant="outlined">
-                            <OutlinedInput
-                                id="outlined-adornment-minWeight"
-                                value={values.minWeight}
-                                onChange={handleTextFieldChange('minWeight')}
-                                endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-                                placeholder="Até"
-                                inputProps={{
-                                    'aria-label': 'minWeight',
-                                }}
-                            />
-                        </FormControl>
-                    </Box>
+                    <Stack
+                        direction="row"
+                        spacing="16px"
+                    >
+                        <TextInput id="ganho-de-peso-de" />
+                        <TextInput id="ganho-de-peso-ate" />
+                    </Stack>
                 </Box>
 
                 <Box
@@ -153,42 +172,20 @@ export default function Filters() {
                     >
                         Período
                     </Typography>
-                    <Box>
-
-                        <FormControl sx={{ marginRight: "16px", width: '153px' }} variant="outlined">
-                            <OutlinedInput
-                                id="outlined-adornment-maxWeight"
-                                value={values.maxWeight}
-                                onChange={handleTextFieldChange('maxWeight')}
-                                endAdornment={<InputAdornment position="end"><CalendarMonthIcon /></InputAdornment>}
-                                placeholder="De"
-                                inputProps={{
-                                    'aria-label': 'maxWeight',
-                                }}
-                            />
-                        </FormControl>
-
-                        <FormControl sx={{ width: '153px' }} variant="outlined">
-                            <OutlinedInput
-                                id="outlined-adornment-minWeight"
-                                value={values.minWeight}
-                                onChange={handleTextFieldChange('minWeight')}
-                                endAdornment={<InputAdornment position="end"><CalendarMonthIcon /></InputAdornment>}
-                                placeholder="Até"
-                                inputProps={{
-                                    'aria-label': 'minWeight',
-                                }}
-                            />
-                        </FormControl>
-                    </Box>
-
+                    <Stack
+                        direction="row"
+                        spacing="16px"
+                    >
+                        <DatePicker label="De" />
+                        <DatePicker label="Até" />
+                    </Stack>
                 </Box>
 
                 <Box
                     display="flex" flexDirection="row" alignItems="center" justifyContent="flex-end"
                 >
-                    <Button variant="contained" sx={{ marginRight: "16px", width: '153px' }}>Consultar</Button>
-                    <Button variant="outlined" sx={{ width: '153px' }}>Limpar tudo</Button>
+                    <Button variant="contained" sx={{ marginRight: "16px", width: 160 }}>Consultar</Button>
+                    <Button variant="outlined" sx={{ width: 160 }}>Limpar tudo</Button>
                 </Box>
             </Stack>
 
