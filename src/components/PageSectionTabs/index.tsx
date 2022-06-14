@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TimeSectionsTabs from '../TimeSectionsTabs';
 import LiveWeight from '../LiveWeight';
+import CloseIcon from '@mui/icons-material/Close';
+import { Button } from '@mui/material';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -49,6 +51,7 @@ export default function PageSectionTabs() {
     return (
         <Box
             maxWidth="100%"
+
         >
             <Box
                 height="76px"
@@ -57,22 +60,32 @@ export default function PageSectionTabs() {
                 boxShadow="0px 4px 10px rgba(0, 0, 0, 0.1)"
                 sx={{ borderBottom: 1, borderColor: 'divider' }}
             >
-                <Tabs value={value} onChange={handleChange} aria-label="Peso vivo e Ganho de Peso">
-                    <Tab label="Peso vivo" {...a11yProps(0)}
-                        sx={{
-                            width: "290px",
-                            textTransform: "capitalize",
-                            fontSize: "1.125rem", fontWeight: "700", lineHeight: "13px", color: "#315e32",
-                        }}
-                    />
-                    <Tab label="Ganho de peso" {...a11yProps(1)}
-                        sx={{
-                            width: "290px",
-                            textTransform: "capitalize",
-                            fontSize: "1.125rem", fontWeight: "700", lineHeight: "13px", color: "#315e32",
-                        }}
-                    />
-                </Tabs>
+                <Button
+                    sx={{
+                        width: "2rem",
+                        height: "100%"
+                    }}
+                >
+                    <CloseIcon fontSize="large" />
+                </Button>
+                <Box display="flex" justifyContent="center" sx={{ flex: 1 }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="Peso vivo e Ganho de Peso">
+                        <Tab label="Peso vivo" {...a11yProps(0)}
+                            sx={{
+                                width: "290px",
+                                textTransform: "capitalize",
+                                fontSize: "1.125rem", fontWeight: "700", lineHeight: "13px", color: "#315e32",
+                            }}
+                        />
+                        <Tab label="Ganho de peso" {...a11yProps(1)}
+                            sx={{
+                                width: "290px",
+                                textTransform: "capitalize",
+                                fontSize: "1.125rem", fontWeight: "700", lineHeight: "13px", color: "#315e32",
+                            }}
+                        />
+                    </Tabs>
+                </Box>
             </Box>
 
             <TimeSectionsTabs />

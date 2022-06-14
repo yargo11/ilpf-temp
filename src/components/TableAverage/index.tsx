@@ -19,24 +19,25 @@ function createData(
     objetivoRealizado: number,
     estimativaObjetivo: number,
     piquete: number,
+    idade: number,
     checkAnimais: boolean,
 ) {
     return {
-        id, mediaDiaria, acumuladoNoPeriodo, diferencaMediaLote, dataPesagem, peso, objetivoRealizado, estimativaObjetivo, piquete, checkAnimais
+        id, mediaDiaria, acumuladoNoPeriodo, diferencaMediaLote, dataPesagem, peso, objetivoRealizado, estimativaObjetivo, piquete, idade, checkAnimais
     };
 }
 
 const rows = [
-    createData('123456789412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
-    createData('302145789412001', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
-    createData('195512478201457', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
-    createData('144788911772214', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
-    createData('123456569412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
-    createData('123456349412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
-    createData('123456789412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
-    createData('123456019412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
-    createData('123456099412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
-    createData('123456239412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
+    createData('123456789412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('302145789412001', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('195512478201457', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('144788911772214', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('123456569412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('123456349412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('123456789412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('123456019412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('123456099412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('123456239412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
 ];
 
 interface TableProps {
@@ -92,7 +93,7 @@ export default function TableAboveAverage({ primaryColor, secondaryColor, button
                     <TableHead>
                         <TableRow>
                             <TableCell
-                                align="center" colSpan={10} height="48px"
+                                align="center" colSpan={11} height="48px"
                                 sx={{
                                     bgcolor: `${primaryColor}`,
                                     borderRadius: "4px 4px 0px 0px"
@@ -118,6 +119,7 @@ export default function TableAboveAverage({ primaryColor, secondaryColor, button
                             <StyledTableCellHead rowSpan={2}>Objetivo realizado (%)</StyledTableCellHead>
                             <StyledTableCellHead rowSpan={2}>Estimativa para atingir objetivo (dias)</StyledTableCellHead>
                             <StyledTableCellHead rowSpan={2}>Piquete</StyledTableCellHead>
+                            <StyledTableCellHead rowSpan={2}>Idade</StyledTableCellHead>
                             <StyledTableCellHead rowSpan={2}>Animais exibidos no gráfico</StyledTableCellHead>
                         </TableRow>
                         <TableRow
@@ -146,6 +148,7 @@ export default function TableAboveAverage({ primaryColor, secondaryColor, button
                                 <StyledTableCell align="center" height="40px">{row.objetivoRealizado}</StyledTableCell>
                                 <StyledTableCell align="center" height="40px">{row.estimativaObjetivo}</StyledTableCell>
                                 <StyledTableCell align="center" height="40px">{row.piquete}</StyledTableCell>
+                                <StyledTableCell align="center" height="40px">{row.idade}</StyledTableCell>
                                 <StyledTableCell align="center" height="40px"><Checkbox value={row.checkAnimais} /></StyledTableCell>
                             </StyledTableRow>
                         ))}

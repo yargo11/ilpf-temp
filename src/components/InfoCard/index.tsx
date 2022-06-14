@@ -1,15 +1,16 @@
 import { Box, Typography } from "@mui/material";
-// import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 
 interface InfoCardProps {
     title: string,
     numericInfo: string,
     textInfo: string,
-    icon?: React.ReactNode
+    icon?: React.ReactNode,
+    tip?: boolean
 }
 
-export default function InfoCard({ title, numericInfo, textInfo, icon }: InfoCardProps) {
+export default function InfoCard({ title, numericInfo, textInfo, icon, tip }: InfoCardProps) {
     return (
         <Box
             p="16px" gap="10px"
@@ -27,7 +28,7 @@ export default function InfoCard({ title, numericInfo, textInfo, icon }: InfoCar
                     <Typography
                         fontSize="1.5rem" fontWeight="500" lineHeight="28.8px" color="#242323"
                     >
-                        {icon} {numericInfo}
+                        {icon}{numericInfo}
                     </Typography>
                     <Typography
                         fontSize="1.125rem" fontWeight="400" lineHeight="21.6px" color="#242323"
@@ -36,7 +37,8 @@ export default function InfoCard({ title, numericInfo, textInfo, icon }: InfoCar
                     </Typography>
                 </Box>
             </Box>
-            {/* <HelpOutlineOutlinedIcon sx={{ color: "#847e7e" }} /> */}
+            {tip && <HelpOutlineOutlinedIcon sx={{ color: "#847e7e" }} />}
+
         </Box>
     )
 

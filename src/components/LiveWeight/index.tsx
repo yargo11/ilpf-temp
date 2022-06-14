@@ -19,8 +19,8 @@ export default function LiveWeight() {
                 mt="24px"
                 display="flex" justifyContent="space-between"
             >
-                <InfoCard title="MÉDIA" numericInfo="240" textInfo="kg de 30 animais" />
-                <InfoCard title="DATA ESTIMADA DO LOTE" numericInfo="240" textInfo="objetivo de 450kg" />
+                <InfoCard title="MÉDIA DO LOTE" numericInfo="240" textInfo="kg de 30 animais" tip={true} />
+                <InfoCard title="DATA ESTIMADA DO LOTE" numericInfo="12/22" textInfo="objetivo de 450kg" />
                 <InfoCard title="ACIMDA DA MÉDIA" numericInfo="33,33%" textInfo="12 animais" icon={<GreenUpArrowSVGComponent />} />
                 <InfoCard title="ABAIXO DA MÉDIA" numericInfo="66,67%" textInfo="20 animais" icon={<OrangeDownArrowSVGComponent />} />
             </Box>

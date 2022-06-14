@@ -184,8 +184,14 @@ export default function Filters() {
                 <Box
                     display="flex" flexDirection="row" alignItems="center" justifyContent="flex-end"
                 >
-                    <Button variant="contained" sx={{ marginRight: "16px", width: 160 }}>Consultar</Button>
-                    <Button variant="outlined" sx={{ width: 160 }}>Limpar tudo</Button>
+                    <Button variant="contained" sx={{ marginRight: "16px", width: 160, textTransform: "capitalize" }}>Consultar</Button>
+                    <Button variant="outlined"
+                        sx={{
+                            width: 160,
+                            p: "8px 12px",
+                            textTransform: "capitalize"
+                        }}
+                    >Trocar lote/animais</Button>
                 </Box>
             </Stack>
 

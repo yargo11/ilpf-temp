@@ -4,7 +4,7 @@ import Filters from "../Filters";
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function TimeSectionsTabs() {
-    const [showFilters, setShowFilters] = useState(true)
+    const [showFilters, setShowFilters] = useState(false)
 
 
 
