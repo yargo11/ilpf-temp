@@ -184,14 +184,27 @@ export default function Filters() {
                 <Box
                     display="flex" flexDirection="row" alignItems="center" justifyContent="flex-end"
                 >
-                    <Button variant="contained" sx={{ marginRight: "16px", width: 160, textTransform: "capitalize" }}>Consultar</Button>
+                    <Button variant="contained" sx={{
+                        marginRight: "16px", p: "8px 12px",
+                        width: 160, textTransform: "capitalize",
+                        bgcolor: "ilpfBrown.darker",
+                        "&:hover": {
+                            bgcolor: "ilpfBrown.light",
+                        }
+                    }}
+                    >
+                        Consultar
+                    </Button>
                     <Button variant="outlined"
                         sx={{
-                            width: 160,
-                            p: "8px 12px",
-                            textTransform: "capitalize"
+                            width: 160, p: "8px 12px",
+                            textTransform: "capitalize",
+                            borderColor: "ilpfBrown.darker",
+                            color: "ilpfBrown.darker",
                         }}
-                    >Trocar lote/animais</Button>
+                    >
+                        Trocar lote/animais
+                    </Button>
                 </Box>
             </Stack>
 

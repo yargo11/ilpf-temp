@@ -4,14 +4,17 @@ import { BarnSVGComponent, RegisterSVGComponent, SensorControlSVGComponent, Weat
 export default function AsideMenu() {
     return (
         <Box
-            position="fixed" top="65px"
+            position="fixed" top="0px"
+            pt="65px"
             width="76px" height="100vh"
             display="flex" justifyContent="center"
+            zIndex="-1"
+            boxShadow="0px 4px 10px rgba(0, 0, 0, 0.1);"
+
         >
             <Stack spacing={3}
                 display="flex" alignItems="center"
                 pt="25px" width="76px"
-                boxShadow="0px 4px 10px rgba(0, 0, 0, 0.1);"
             >
                 <Box height="26px">
                     <BarnSVGComponent />

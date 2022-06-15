@@ -24,13 +24,16 @@ export default function TimeSectionsTabs() {
                 m="auto" p="5px"
                 bgcolor="#D5E0E3"
                 borderRadius="30px"
-                height="43px" maxWidth="1176px"
+                height="43px" maxWidth="1238px"
                 display="flex" justifyContent="space-between"
             >
                 <Button
                     sx={{
                         width: "250px", textTransform: "capitalize", borderRadius: "30px",
-                        fontSize: "0.875rem", fontWeight: "700", lineHeight: "16px", color: "#242323"
+                        fontSize: "0.875rem", fontWeight: "700", lineHeight: "16px", color: "#242323",
+                        "&:hover": {
+                            bgcolor: "white"
+                        }
                     }}
                 >
                     Semanal
@@ -38,7 +41,10 @@ export default function TimeSectionsTabs() {
                 <Button
                     sx={{
                         width: "250px", textTransform: "capitalize", borderRadius: "30px",
-                        fontSize: "0.875rem", fontWeight: "700", lineHeight: "16px", color: "#242323"
+                        fontSize: "0.875rem", fontWeight: "700", lineHeight: "16px", color: "#242323",
+                        "&:hover": {
+                            bgcolor: "white"
+                        }
                     }}
                 >
                     Mensal
@@ -46,7 +52,10 @@ export default function TimeSectionsTabs() {
                 <Button
                     sx={{
                         width: "250px", textTransform: "capitalize", borderRadius: "30px",
-                        fontSize: "0.875rem", fontWeight: "700", lineHeight: "16px", color: "#242323"
+                        fontSize: "0.875rem", fontWeight: "700", lineHeight: "16px", color: "#242323",
+                        "&:hover": {
+                            bgcolor: "white"
+                        }
                     }}
                     onClick={handleFilters}
                 >

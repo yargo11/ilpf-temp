@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles';
 
 function createData(
     id: string,
+    idade: number,
     mediaDiaria: number,
     acumuladoNoPeriodo: number,
     diferencaMediaLote: number,
@@ -19,25 +20,24 @@ function createData(
     objetivoRealizado: number,
     estimativaObjetivo: number,
     piquete: number,
-    idade: number,
     checkAnimais: boolean,
 ) {
     return {
-        id, mediaDiaria, acumuladoNoPeriodo, diferencaMediaLote, dataPesagem, peso, objetivoRealizado, estimativaObjetivo, piquete, idade, checkAnimais
+        id, idade, mediaDiaria, acumuladoNoPeriodo, diferencaMediaLote, dataPesagem, peso, objetivoRealizado, estimativaObjetivo, piquete, checkAnimais
     };
 }
 
 const rows = [
-    createData('123456789412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
-    createData('302145789412001', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
-    createData('195512478201457', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
-    createData('144788911772214', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
-    createData('123456569412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
-    createData('123456349412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
-    createData('123456789412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
-    createData('123456019412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
-    createData('123456099412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
-    createData('123456239412003', 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, 15, true),
+    createData('123456789412003', 15, 1.50, -3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, false),
+    createData('302145789412001', 15, 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
+    createData('195512478201457', 15, 1.50, -1.22, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, false),
+    createData('144788911772214', 15, -1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, false),
+    createData('123456569412003', 15, 1.50, 3.15, -0.50, '28/Ago', 256.26, 56, 120, 123456789123654, false),
+    createData('123456349412003', 15, 1.50, 3.15, -0.50, '28/Ago', 256.26, 56, 120, 123456789123654, false),
+    createData('123456789412003', 15, 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
+    createData('123456019412003', 15, 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
+    createData('123456099412003', 15, 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
+    createData('123456239412003', 15, 1.50, 3.15, 0.50, '28/Ago', 256.26, 56, 120, 123456789123654, true),
 ];
 
 interface TableProps {
@@ -114,12 +114,12 @@ export default function TableAboveAverage({ primaryColor, secondaryColor, button
                             }}
                         >
                             <StyledTableCellHead rowSpan={2} height="79px">Animal (ID Visual)</StyledTableCellHead>
+                            <StyledTableCellHead rowSpan={2}>Idade (meses)</StyledTableCellHead>
                             <StyledTableCellHead colSpan={3}>Ganho de peso (kg)</StyledTableCellHead>
                             <StyledTableCellHead colSpan={2}>Peso vivo (kg)</StyledTableCellHead>
                             <StyledTableCellHead rowSpan={2}>Objetivo realizado (%)</StyledTableCellHead>
                             <StyledTableCellHead rowSpan={2}>Estimativa para atingir objetivo (dias)</StyledTableCellHead>
                             <StyledTableCellHead rowSpan={2}>Piquete</StyledTableCellHead>
-                            <StyledTableCellHead rowSpan={2}>Idade</StyledTableCellHead>
                             <StyledTableCellHead rowSpan={2}>Animais exibidos no gráfico</StyledTableCellHead>
                         </TableRow>
                         <TableRow
@@ -138,18 +138,32 @@ export default function TableAboveAverage({ primaryColor, secondaryColor, button
                         {rows.map((row) => (
                             <StyledTableRow
                                 key={row.id}
+                                sx={{ bgcolor: `${row.checkAnimais}` ? `${secondaryColor}` : "white" }}
                             >
                                 <StyledTableCell component="th" scope="row" align="center" height="40px">{row.id}</StyledTableCell>
-                                <StyledTableCell align="center" height="40px">{row.mediaDiaria}</StyledTableCell>
-                                <StyledTableCell align="center" height="40px">{row.acumuladoNoPeriodo}</StyledTableCell>
-                                <StyledTableCell align="center" height="40px">{row.diferencaMediaLote}</StyledTableCell>
+                                <StyledTableCell align="center" height="40px">{row.idade}</StyledTableCell>
+                                <StyledTableCell align="center" height="40px">
+                                    <Typography color={row.mediaDiaria < 0 ? "red" : "black"}>
+                                        {row.mediaDiaria}
+                                    </Typography>
+
+                                </StyledTableCell>
+                                <StyledTableCell align="center" height="40px">
+                                    <Typography color={row.acumuladoNoPeriodo < 0 ? "red" : "black"}>
+                                        {row.acumuladoNoPeriodo}
+                                    </Typography>
+                                </StyledTableCell>
+                                <StyledTableCell align="center" height="40px">
+                                    <Typography color={row.diferencaMediaLote < 0 ? "red" : "black"}>
+                                        {row.diferencaMediaLote}
+                                    </Typography>
+                                </StyledTableCell>
                                 <StyledTableCell align="center" height="40px">{row.dataPesagem}</StyledTableCell>
                                 <StyledTableCell align="center" height="40px">{row.peso}</StyledTableCell>
                                 <StyledTableCell align="center" height="40px">{row.objetivoRealizado}</StyledTableCell>
                                 <StyledTableCell align="center" height="40px">{row.estimativaObjetivo}</StyledTableCell>
                                 <StyledTableCell align="center" height="40px">{row.piquete}</StyledTableCell>
-                                <StyledTableCell align="center" height="40px">{row.idade}</StyledTableCell>
-                                <StyledTableCell align="center" height="40px"><Checkbox value={row.checkAnimais} /></StyledTableCell>
+                                <StyledTableCell align="center" height="40px"><Checkbox value={row.checkAnimais} color="success" /></StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>

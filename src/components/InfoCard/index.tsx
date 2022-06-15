@@ -28,10 +28,10 @@ export default function InfoCard({ title, numericInfo, textInfo, icon, tip }: In
                     <Typography
                         fontSize="1.5rem" fontWeight="500" lineHeight="28.8px" color="#242323"
                     >
-                        {icon}{numericInfo}
+                        {icon}{' '}{numericInfo}
                     </Typography>
                     <Typography
-                        fontSize="1.125rem" fontWeight="400" lineHeight="21.6px" color="#242323"
+                        fontSize="1.125rem" fontWeight="400" lineHeight="21.6px" color="#242323" ml="0.2rem"
                     >
                         {textInfo}
                     </Typography>

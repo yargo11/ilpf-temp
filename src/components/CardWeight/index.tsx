@@ -23,6 +23,7 @@ export default function CardWeight({ title, quantity }: CardWeightProps) {
             <Typography
                 mt="12px"
                 fontSize="0.875rem" fontWeight="400" lineHeight="16px" color="#666666"
+                sx={{ display: "flex", alignItems: "center" }}
             >
                 <LoopIcon sx={{ fontSize: "0.875rem" }} /> Atualizado: 13/11/21 às 05:30
             </Typography >
