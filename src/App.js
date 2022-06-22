@@ -15,7 +15,7 @@ function App() {
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Header />
         <AsideMenu />
-        <Box pl="76px">
+        <Box pl="76px" pt="65px">
           <PageSectionTabs />
         </Box>
       </LocalizationProvider>

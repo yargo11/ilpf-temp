@@ -51,7 +51,6 @@ export default function PageSectionTabs() {
     return (
         <Box
             maxWidth="100%"
-
         >
             <Box
                 height="76px"

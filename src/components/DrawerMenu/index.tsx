@@ -1,8 +1,8 @@
-import { Box, Button, Divider, Drawer, Stack, Typography } from "@mui/material";
+import { Box, Button, Divider, Drawer, Stack } from "@mui/material";
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import AsideMenu from "../AsideMenu";
 import { BarnSVGComponent, RegisterSVGComponent, SensorControlSVGComponent, WeatherSVGComponent, WeightSVGComponent, WelfareSVGComponent } from "src/icons";
+import DrawerLink from "./DrawerLink";
 
 type Anchor = 'left';
 
@@ -22,7 +22,6 @@ export default function DrawerMenu() {
                 ) {
                     return;
                 }
-
                 setState({ ...state, [anchor]: open });
             };
 
@@ -51,8 +50,7 @@ export default function DrawerMenu() {
                         onClose={toggleDrawer(anchor, false)}
                     >
                         <Box
-                            position="fixed" top="0px"
-                            // pt="65px"
+                            position="fixed" top="65px"
                             width="252px" height="100vh"
                             display="flex" justifyContent="center"
                             zIndex="-1"
@@ -64,35 +62,24 @@ export default function DrawerMenu() {
                                 display="flex" alignItems="left"
                                 width="252px"
                             >
-                                <Box height="65px" pl="26px" display="flex" flexDirection="row">
-                                    <Button sx={{ width: "100%", justifyContent: "start" }} onClick={toggleDrawer(anchor, false)}> Fechar</Button>
-                                </Box>
-                                <Box height="26px" pl="26px" display="flex" flexDirection="row">
-                                    <BarnSVGComponent /> <Typography sx={{ ml: "20px" }}> Página inicial</Typography>
-                                </Box>
                                 <Divider sx={{
                                     width: "100%",
                                     border: "-1px solid #DDDDDD"
                                 }} />
-                                <Box pl="26px" display="flex" flexDirection="row">
-                                    <WeightSVGComponent /> <Typography sx={{ ml: "20px" }}>Prod. de gado de corte</Typography>
-                                </Box>
-                                <Box pl="26px" display="flex" flexDirection="row">
-                                    <WelfareSVGComponent /> <Typography sx={{ ml: "20px" }}>Bem-estar animal</Typography>
-                                </Box>
-                                <Box pl="26px" display="flex" flexDirection="row">
-                                    <WeatherSVGComponent /><Typography sx={{ ml: "20px" }}> Microclima</Typography>
-                                </Box>
+                                <DrawerLink nome="Página inicial" anchor="#" icon={<BarnSVGComponent />} />
                                 <Divider sx={{
                                     width: "100%",
                                     border: "-1px solid #DDDDDD"
                                 }} />
-                                <Box pl="26px" display="flex" flexDirection="row">
-                                    <RegisterSVGComponent /> <Typography sx={{ ml: "20px" }}>Manter cadastros</Typography>
-                                </Box>
-                                <Box pl="26px" display="flex" flexDirection="row">
-                                    <SensorControlSVGComponent /> <Typography sx={{ ml: "20px" }}>Controle de sensores</Typography>
-                                </Box>
+                                <DrawerLink nome="Prod. de gato de corte" anchor="#" icon={<WeightSVGComponent />} />
+                                <DrawerLink nome="Bem-estar animal" anchor="#" icon={<WelfareSVGComponent />} />
+                                <DrawerLink nome="Microclima" anchor="#" icon={<WeatherSVGComponent />} />
+                                <Divider sx={{
+                                    width: "100%",
+                                    border: "-1px solid #DDDDDD"
+                                }} />
+                                <DrawerLink nome="Manter cadastros" anchor="#" icon={<RegisterSVGComponent />} />
+                                <DrawerLink nome="Controle de sensores" anchor="#" icon={<SensorControlSVGComponent />} />
                                 <Divider sx={{
                                     width: "100%",
                                     border: "-1px solid #DDDDDD"

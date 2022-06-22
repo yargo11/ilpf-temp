@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Button, FormControl, MenuItem, Select, SelectChangeEvent, Stack, TextField, Typography } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import { ChangeLocalizationSVGComponent } from "../../icons";
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -23,6 +22,9 @@ export default function Header() {
           backgroundColor: "#315E32",
           display: "flex",
         }}
+        position="fixed"
+        width="100vw"
+        zIndex="1"
       >
         <Stack
           direction="row"
