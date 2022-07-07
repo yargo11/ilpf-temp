@@ -42,6 +42,9 @@ declare module '@mui/material/styles' {
 
 export const theme = createTheme({
     palette: {
+        primary: {
+            main: '#732014',
+          },
         ilpfGreen: {
             main: "#B3DBB4",
             light: "#D9EDDA",
