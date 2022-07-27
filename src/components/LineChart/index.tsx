@@ -1,7 +1,66 @@
 import { Box, Typography, Button } from "@mui/material";
+import { useState } from "react";
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryScatter } from "victory";
 
-export default function LineChart() {
+interface allDataProps {
+    dados: dadosProps
+}
+interface dadosProps {
+    lastUpdate: string
+    labels: Array<labelsProps>
+    info: infoProps
+    data: dataProps
+}
+
+interface labelsProps {
+    x: number
+    date: string
+}
+
+interface dataProps {
+    above: Array<Array<aboveBelowProps>>
+    below: Array<Array<aboveBelowProps>>
+    target: Array<aboveBelowProps>
+    mean: Array<aboveBelowProps>
+}
+
+interface aboveBelowProps {
+    x: number
+    y: number
+}
+
+interface infoProps {
+    target: {
+        weight: number
+        date: string
+        age: number
+    }
+    animals: {
+        total: number,
+        aboveAbs: number
+        abovePct: number
+        belowAbs: number
+        belowPct: number
+    }
+    mean: {
+        weight: number
+        date: string
+        age: number
+    }
+}
+
+
+export default function LineChart(dados: allDataProps) {
+
+    const [labelsX, setLabelsX] = useState<labelsProps[]>(
+        dados.dados.labels
+    )
+
+    const [labelsY, setLabelsY] = useState<labelsProps[]>(
+        dados.dados.labels
+    )
+
+
     return (
         <Box>
             <Box display="flex" flexDirection="row" justifyContent="space-between">
@@ -29,21 +88,30 @@ export default function LineChart() {
                 </Button>
             </Box>
             <Box
-                height="365px"
+                height="550px"
+                width="100%"
             >
                 <VictoryChart
-                    domain={{ x: [0, 5], y: [0, 7] }}
+                    domain={{ x: [0, 7], y: [0, 7] }}
                 >
 
                     <VictoryAxis crossAxis
                         width={400}
                         height={400}
                         standalone={false}
-                        tickValues={["200", "220", "240", "260", "280", "300"]}
+                        tickValues={labelsX.map(label => {
+                            return (
+                                label.date
+                            )
+                        })}
                     />
                     <VictoryAxis
                         dependentAxis
-                        tickValues={["200", "220", "240", "260", "280", "300"]}
+                        tickValues={labelsX.map(label => {
+                            return (
+                                label.x
+                            )
+                        })}
                     />
 
 
@@ -61,6 +129,20 @@ export default function LineChart() {
                             { x: 5, y: 6 }
                         ]}
                     />
+                    <VictoryLine
+                        style={{
+                            data: { stroke: "#853E00" },
+                            parent: { border: "1px solid #ccc" }
+                        }}
+                        interpolation="natural"
+                        data={[
+                            { x: 1, y: 3 },
+                            { x: 3, y: 3 },
+                            { x: 3, y: 5 },
+                            { x: 4, y: 4 },
+                            { x: 5, y: 6 }
+                        ]}
+                    />
                     <VictoryScatter
                         style={{ data: { fill: "#34A853" } }}
                         symbol={({ datum }) => datum.y > 3 ? "triangleUp" : "triangleDown"}
@@ -68,6 +150,18 @@ export default function LineChart() {
                         data={[
                             { x: 1, y: 2 },
                             { x: 2, y: 3 },
+                            { x: 3, y: 5 },
+                            { x: 4, y: 4 },
+                            { x: 5, y: 6 }
+                        ]}
+                    />
+                    <VictoryScatter
+                        style={{ data: { fill: "#853E00" } }}
+                        symbol={({ datum }) => datum.y > 3 ? "triangleUp" : "triangleDown"}
+                        size={7}
+                        data={[
+                            { x: 1, y: 3 },
+                            { x: 3, y: 3 },
                             { x: 3, y: 5 },
                             { x: 4, y: 4 },
                             { x: 5, y: 6 }

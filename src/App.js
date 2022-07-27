@@ -7,6 +7,11 @@ import { theme } from "./style/theme"
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ThemeProvider } from "@emotion/react";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import ValoresMedidos from "./components/ValoresMedidos";
+import TemperaturaPelame from "./components/TemperaturaPelame";
+import ValoresReferencia from "./components/ValoresReferencia";
+import FrequenciaCardiaca from "./components/FrequenciaCardiaca";
+import FrequenciaRespiratoria from "./components/FrequenciaRespiratoria";
 
 
 function App() {
@@ -16,7 +21,12 @@ function App() {
         <Header />
         <AsideMenu />
         <Box pl="76px" pt="65px">
-          <PageSectionTabs />
+          {/* <PageSectionTabs /> */}
+          <ValoresMedidos />
+          <ValoresReferencia />
+          <TemperaturaPelame />
+          <FrequenciaCardiaca />
+          <FrequenciaRespiratoria />
         </Box>
       </LocalizationProvider>
     </ThemeProvider>

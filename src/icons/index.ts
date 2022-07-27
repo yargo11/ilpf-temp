@@ -14,3 +14,6 @@ export { default as Welfare, ReactComponent as WelfareSVGComponent } from './Wel
 export { default as WelfareSelected, ReactComponent as WelfareSelectedSVGComponent } from './WelfareSelected.svg'
 export { default as OrangeDownArrow, ReactComponent as OrangeDownArrowSVGComponent } from './OrangeDownArrow.svg'
 export { default as GreenUpArrow, ReactComponent as GreenUpArrowSVGComponent } from './GreenUpArrow.svg'
+export { default as Lung, ReactComponent as LungSVGComponent } from './Lung.svg'
+export { default as WealthHeart, ReactComponent as WealthHeartSVGComponent } from './WealthHeart.svg'
+export { default as Thermometer, ReactComponent as ThermometerSVGComponent } from './Thermometer.svg'
