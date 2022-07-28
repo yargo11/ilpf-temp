@@ -21,12 +21,12 @@ function App() {
         <Header />
         <AsideMenu />
         <Box pl="76px" pt="65px">
-          {/* <PageSectionTabs /> */}
-          <ValoresMedidos />
+          <PageSectionTabs />
+          {/* <ValoresMedidos />
           <ValoresReferencia />
           <TemperaturaPelame />
           <FrequenciaCardiaca />
-          <FrequenciaRespiratoria />
+          <FrequenciaRespiratoria /> */}
         </Box>
       </LocalizationProvider>
     </ThemeProvider>

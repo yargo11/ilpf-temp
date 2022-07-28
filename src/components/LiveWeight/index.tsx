@@ -7,6 +7,7 @@ import { GreenUpArrowSVGComponent, OrangeDownArrowSVGComponent } from "src/icons
 import LineChart from "../LineChart";
 import TableAverage from "../TableAverage";
 import dados from "../LineChart/dados.json"
+import PieChart from "../PieChart";
 
 export default function LiveWeight() {
     return (
@@ -26,7 +27,8 @@ export default function LiveWeight() {
                 <InfoCard title="ABAIXO DA MÉDIA" numericInfo="66,67%" textInfo="20 animais" icon={<OrangeDownArrowSVGComponent />} />
             </Box>
             <Box mt="47px">
-                <LineChart dados={dados} />
+                {/* <LineChart dados={dados} /> */}
+                <PieChart />
                 <TableAverage
                     title="Acima da média (ordenação decrescente por peso vivo em 12/11/21)"
                     primaryColor="#d9edda"
